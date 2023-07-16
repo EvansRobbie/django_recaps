@@ -1,0 +1,25 @@
+{% extends 'music/base.html' %}
+{% block title %} Add Album {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel-body">
+                    <!-- action is empty coz it the form will be redirected to the same view where it will be 
+                    handled ie. def get_absolute_url -->
+                    <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'music/form.html' %}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,15 +3,25 @@
 
 {% block content %}
 {% if all_albums %}
-    <ul>
+    <div class="container-fluid">
         <h3>Here are all albums</h3>
-        {% for album in all_albums %}
-        
-        <li><a href="{% url 'music:detail' album.id  %}">{{album.album_title}}</a></li>
-        {% endfor %}
-    </ul>
+        <div class="row align-items-start">
+            {% for album in all_albums %}
+                <div class="col-md-3">
+                    <a href="{% url 'music:album-update' album.id %}" class="card mb-3">
+                        <img src="{{ album.album_logo.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ album.album_title }}</h5>
+                            <p class="card-text">{{ album.artist }}</p>
+                            <a href="{% url 'music:detail' album.id %}" class="btn btn-primary">View Details</a>
+                            <a href="{% url 'music:album-delete' album.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% else %}
     <h3>No Albums</h3>
-
 {% endif %}
 {% endblock %}

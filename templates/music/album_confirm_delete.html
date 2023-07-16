@@ -1,0 +1,15 @@
+
+{% extends 'music/base.html' %}
+{% block title %} Confirm delete {% endblock %}
+
+{% block content %}
+
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete the album "{{ album.album_title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+        <a href="{% url 'music:index' %}">Cancel</a>
+    </form>
+
+{% endblock %}

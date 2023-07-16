@@ -2,7 +2,7 @@
 {% block title %}Album Details{% endblock %}
 
 {% block content %}
-<img src="{{album.album_logo}}" alt="">
+<img width="500" src="{{album.album_logo.url}}" alt="">
 
 <h1>{{album.album_title}}</h1>
 <h3>{{album.artist}}</h3>
@@ -12,17 +12,17 @@
     <p><strong>{{error_message}}</strong></p>
 {% endif %}
 
-<form action="{% url 'music:favorite' album.id %}" method="post">
+<form action="" method="post">
     {% csrf_token %}
     {% for song in album.song_set.all %}
         <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{song.id}}"/>
         <label for="song{{ forloop.counter }}">{{song.song_title}}
           
-            {% if song.is_favorite %}
+            <!-- {% if song.is_favorite %}
                 <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" width="10px" alt="">
             {% else %}
                 <img src="https://image.shutterstock.com/image-vector/white-star-vector-icon-260nw-691103914.jpg" width="20" alt="">
-            {% endif %}
+            {% endif %} -->
         </label><br>
     {% endfor %}
     <input type="submit" value="Favorite">
